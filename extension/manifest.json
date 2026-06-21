@@ -1,0 +1,53 @@
+{
+  "manifest_version": 3,
+  "name": "Vision Assist",
+  "version": "1.0.0",
+  "description": "AI-powered screen reader that summarizes web pages, describes images, and answers your questions by voice.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "tabs",
+    "tts"
+  ],
+  "host_permissions": [
+    "http://localhost:3001/*",
+    "http://127.0.0.1:3001/*",
+    "https://translate.google.com/*"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Vision Assist — Summarize this page",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "options/options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "commands": {
+    "summarize-page": {
+      "suggested_key": { "default": "Alt+Shift+S" },
+      "description": "Summarize the current page"
+    },
+    "ask-question": {
+      "suggested_key": { "default": "Alt+Shift+Q" },
+      "description": "Ask a question about the page"
+    }
+  }
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vision Assist</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="header" role="banner">
+    <h1 id="app-title">Vision Assist</h1>
+    <p class="subtitle">AI screen reader for the web</p>
+  </header>
+
+  <main role="main">
+    <div id="status" class="status" role="status" aria-live="polite" aria-atomic="true">
+      Ready. Open a web page and press Summarize.
+    </div>
+
+    <div id="backend-status" class="backend-status" aria-live="polite"></div>
+
+    <section class="controls" aria-label="Main controls">
+      <button id="btn-summarize" class="btn btn-primary" type="button">
+        Summarize Page
+      </button>
+      <button id="btn-ask" class="btn btn-secondary" type="button" disabled>
+        Ask a Question
+      </button>
+      <button id="btn-stop" class="btn btn-ghost" type="button" disabled>
+        Stop Audio
+      </button>
+    </section>
+
+    <section id="confirmation-panel" class="panel hidden" aria-labelledby="confirm-title">
+      <h2 id="confirm-title">Sensitive Content Detected</h2>
+      <p id="confirm-message"></p>
+      <div class="controls">
+        <button id="btn-confirm" class="btn btn-warning" type="button">I understand — proceed anyway</button>
+        <button id="btn-cancel" class="btn btn-ghost" type="button">Cancel</button>
+      </div>
+    </section>
+
+    <section id="results-panel" class="panel hidden" aria-labelledby="results-title">
+      <h2 id="results-title">Page Summary</h2>
+      <dl class="meta">
+        <div><dt>Page type</dt><dd id="page-type">—</dd></div>
+        <div><dt>Title</dt><dd id="page-title">—</dd></div>
+      </dl>
+      <p id="summary-text" class="summary"></p>
+
+      <div id="sections-block" class="hidden">
+        <h3>Sections</h3>
+        <ul id="sections-list" class="sections-list" role="list"></ul>
+      </div>
+
+      <div id="images-block" class="hidden">
+        <div class="images-header">
+          <h3>Images</h3>
+          <button id="btn-describe-all" class="btn btn-small" type="button">Read all descriptions</button>
+        </div>
+        <ul id="images-list" class="images-list" role="list"></ul>
+      </div>
+    </section>
+
+    <section id="qa-panel" class="panel hidden" aria-labelledby="qa-title">
+      <h2 id="qa-title">Ask About This Page</h2>
+      <p class="hint">Click the microphone to open a voice window where Chrome can request mic access. Or type your question below.</p>
+      <div class="qa-input-row">
+        <button id="btn-mic" class="btn btn-mic" type="button" aria-label="Start voice input" title="Speak your question">
+          🎤
+        </button>
+        <input id="question-input" type="text" placeholder="What is this page about?" aria-label="Your question">
+        <button id="btn-submit-question" class="btn btn-secondary" type="button">Ask</button>
+      </div>
+      <p id="answer-text" class="answer hidden" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a href="#" id="link-options" aria-label="Open settings">Settings</a>
+  </footer>
+
+  <script src="../lib/api.js"></script>
+  <script src="../lib/audio.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

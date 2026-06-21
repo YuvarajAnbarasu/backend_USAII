@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vision Assist Settings</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --border: #2d3a4f;
+      --text: #e8edf4;
+      --muted: #8b9cb3;
+      --primary: #4f8cff;
+      --font: 'Segoe UI', system-ui, sans-serif;
+    }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      max-width: 560px;
+      margin: 40px auto;
+      padding: 0 24px;
+      line-height: 1.6;
+    }
+    h1 { font-size: 22px; margin-bottom: 8px; }
+    p { color: var(--muted); margin-bottom: 24px; }
+    label { display: block; font-weight: 600; margin-bottom: 6px; }
+    input[type="url"] {
+      width: 100%;
+      padding: 10px 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    input:focus { outline: 2px solid var(--primary); }
+    button {
+      padding: 10px 20px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    #saved { color: #7dcea0; margin-top: 12px; min-height: 20px; }
+    .shortcuts { margin-top: 32px; }
+    .shortcuts h2 { font-size: 16px; margin-bottom: 8px; }
+    .shortcuts kbd {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Vision Assist Settings</h1>
+  <p>Configure the backend server that powers summarization, image descriptions, and Q&amp;A.</p>
+
+  <form id="settings-form">
+    <label for="backend-url">Backend URL</label>
+    <input type="url" id="backend-url" name="backendUrl" placeholder="http://localhost:3001" required>
+    <button type="submit">Save</button>
+  </form>
+  <p id="saved" role="status" aria-live="polite"></p>
+
+  <section class="shortcuts">
+    <h2>Keyboard Shortcuts</h2>
+    <p>Customize these in Chrome at <code>chrome://extensions/shortcuts</code></p>
+    <ul>
+      <li><kbd>Alt+Shift+S</kbd> — Summarize page</li>
+      <li><kbd>Alt+Shift+Q</kbd> — Ask a question</li>
+    </ul>
+  </section>
+
+  <script src="options.js"></script>
+</body>
+</html>

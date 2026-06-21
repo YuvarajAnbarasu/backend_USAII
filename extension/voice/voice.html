@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vision Assist — Voice Input</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --text: #e8edf4;
+      --muted: #8b9cb3;
+      --primary: #4f8cff;
+      --danger: #e74c3c;
+      --success: #7dcea0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 24px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    h1 { font-size: 18px; margin-bottom: 8px; }
+    p { font-size: 13px; color: var(--muted); margin-bottom: 20px; line-height: 1.5; max-width: 320px; }
+    #status {
+      font-size: 14px;
+      margin-bottom: 16px;
+      min-height: 20px;
+      color: var(--success);
+    }
+    #status.error { color: var(--danger); }
+    button {
+      width: 100%;
+      max-width: 280px;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    #btn-start {
+      background: var(--primary);
+      color: #fff;
+    }
+    #btn-start:hover { filter: brightness(1.08); }
+    #btn-start:disabled { opacity: 0.5; cursor: not-allowed; }
+    #btn-cancel {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid #2d3a4f;
+    }
+    .listening #btn-start {
+      background: #3d1f1f;
+      border: 2px solid var(--danger);
+      animation: pulse 1.2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.65; }
+    }
+    .help {
+      margin-top: 16px;
+      font-size: 11px;
+      color: var(--muted);
+      max-width: 300px;
+    }
+    .help a { color: var(--primary); }
+  </style>
+</head>
+<body>
+  <h1>Voice Input</h1>
+  <p>Click the button below. Chrome will ask to use your microphone — choose <strong>Allow</strong>.</p>
+  <div id="status" role="status" aria-live="polite"></div>
+  <button id="btn-start" type="button">Allow microphone &amp; start listening</button>
+  <button id="btn-cancel" type="button">Cancel</button>
+  <p class="help">
+    If no prompt appears, open
+    <a href="#" id="link-settings">Chrome microphone settings</a>
+    and ensure Chrome is allowed to use the microphone.
+  </p>
+  <script src="voice.js"></script>
+</body>
+</html>
